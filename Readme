@@ -1,0 +1,51 @@
+
+Cron Expression Parser
+
+a command line application or script which parses a cron string and expands each field
+to show the times at which it will run
+
+You should only consider the standard cron format with five time fields (minute, hour, day of
+month, month, and day of week) plus a command. The input will be on a single line.
+
+```./gocron "*/15 0 1,15 * 1-5 /usr/bin/find"```
+
+## Prerequisites
+- Go
+
+## Limitations
+
+- No handle the special time strings such as @yearly"
+- No handle for #,L,W
+- No handle for more than one combination except  (-/) combination
+
+
+## Usage
+
+Compile the program:
+
+```go build```
+
+Run the program
+
+```./gocron "*/15 0 1,15 * 1-5 /usr/bin/find"```
+
+## Example
+
+Input
+
+```*/15 0 1,15 * 1-5 /usr/bin/find```
+
+Output
+
+```
+minutes       0 15 30 45
+hour          0
+day of month  1 16
+month         1 2 3 4 5 6 7 8 9 10 11 12
+day of week   1 2 3 4 5
+command       /usr/bin/find
+```
+
+## Testing
+
+```go test```
